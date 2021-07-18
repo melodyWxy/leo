@@ -1,7 +1,10 @@
 
 
 
-module.exports = function(list){
+module.exports = function(list = []){
     console.log();
-    console.table(list);
+    const res =  list.map(item=>({
+        template: item
+    }))
+    console.table(res, ['template'])
 }
