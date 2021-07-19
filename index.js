@@ -25,7 +25,7 @@ class Leo {
             spinner0.start();
             const branchs = await getTemplates();
             spinner0.stop();
-            console.log(chalk.green(`初始化完毕，请自主修改项目目录名以及对应的package.json信息。`));
+            console.log(chalk.green(`检索完毕。`));
             const searchRes = await inquirer.prompt([{
               type: 'list',
               message: '请选择模板:',
