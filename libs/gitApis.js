@@ -8,10 +8,10 @@ const git = simpleGit({
 
 
 exports.getRemoteList = () => {
-    return new Promise((resolve)=>{
+    return new Promise((resolve, reject)=>{
         git.remote((err, data)=>{
             if(err){
-                throw err;
+                reject(err);
             }else{
                 let res = data ||'';
                 resolve(res.split('\n'));
@@ -21,10 +21,10 @@ exports.getRemoteList = () => {
 }
 
 exports.addRemote = () => {
-    return new Promise((resolve)=>{
+    return new Promise((resolve, reject)=>{
         git.remote(['add', 'templateupstream', 'https://github.com/melodyWxy/melody-template-store.git'], (err, data)=>{
             if(err){
-                throw err;
+                reject(err);
             }else{
                 resolve(data);
             }
@@ -33,10 +33,10 @@ exports.addRemote = () => {
 }
 
 exports.fetchRemote = () => {
-    return new Promise((resolve)=>{
+    return new Promise((resolve, reject)=>{
         git.fetch(['templateupstream'], (err, data)=>{
             if(err){
-                throw err;
+                reject(err);
             }else{
                 resolve(data);
             }
@@ -45,10 +45,10 @@ exports.fetchRemote = () => {
 }
 
 exports.getBranchs = () => {
-    return new Promise((resolve)=>{
+    return new Promise((resolve, reject)=>{
         git.remote(['show', 'templateupstream'], (err, data)=>{
             if(err){
-                throw err;
+                reject(err);
             }else{
                 
                 const stringList = (data||'').split('\n');
@@ -66,10 +66,10 @@ exports.getBranchs = () => {
 }
 
 exports.deleteRemote =  () => {
-    return new Promise((resolve)=>{
+    return new Promise((resolve, reject)=>{
         git.remote(['remove', 'templateupstream'], (err, data)=>{
             if(err){
-                throw err;
+                reject(err);
             }else{
                 resolve(data);
             }
